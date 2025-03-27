@@ -1,4 +1,4 @@
-name: Integeration
+name: Deploy
 
 on:
   push:
