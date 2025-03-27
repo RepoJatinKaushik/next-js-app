@@ -1,0 +1,16 @@
+name: Integeration
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+    deploy:
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: action/checkout@v4
+            - run: docker build . -t ${{secrets.DOCKER_HUB_USERNAME}}/next-js-app
+            - run: echo "${{secrets.DOCKER_HUB_PASSWORD}}" | docker login -u ${{secrets.DOCKER_HUB_USERNAME}} --password-stdin
+            - run: docker push jatinkaushik2103/next-js-app:latest
