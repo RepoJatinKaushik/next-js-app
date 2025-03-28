@@ -1,0 +1,11 @@
+name: call-workflow
+
+on: [push]
+
+jobs:
+    call-another-workflow:
+        uses: ./.github/workflows/call_workflow.yml
+        with:
+            environment: Development
+        secrets:
+            DOCKER_USERNAME: Jatin Kaushik
