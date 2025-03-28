@@ -2,6 +2,14 @@ name: testing-actions
 
 on:
     workflow_dispatch:
+    workflow_call:
+        inputs:
+            environment:
+                required: true
+                type: string
+        secrets:
+            DOCKER_USERNAME:
+                required: true
 
 
 jobs:
@@ -9,4 +17,6 @@ jobs:
      runs-on: ubuntu-latest
      steps:
       - name: Print Environment
-        run: echo "Running on environment- manual-dispatch"
+        run: echo "Running on environment- ${{inputs.environment}}"
+      - name: Print Secret
+        run: echo "The docker name is - ${{secrets.DOCKER_USERNAME}}"
